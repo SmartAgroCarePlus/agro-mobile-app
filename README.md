@@ -1,2 +1,19 @@
-# agro-mobile-app
-Application cross-platform (iOS/Android) permettant aux agriculteurs de :  📸 Capturer des photos de plantes malades  🚀 Envoyer les images au backend pour analyse IA  📊 Afficher les diagnostics et conseils de traitement  📅 Consulter l'historique des analyses
+# SmartAgroCare Mobile 🌱
+Application React Native (Expo Go) pour le diagnostic des maladies des plantes.
+
+## ✨ Fonctionnalités
+- Capture photo via caméra/galerie
+- Upload vers l'API backend
+- Affichage des résultats (maladie + conseils Gemini)
+- Historique local des diagnostics
+
+## 🚀 Installation
+1. Cloner le dépôt :
+```bash
+git clone https://github.com/SmartAgroCare/agro-mobile.git
+npm install
+# ou
+yarn install
+expo start
+```
+Scannez le QR code avec l'application Expo Go (disponible sur iOS/Android).
