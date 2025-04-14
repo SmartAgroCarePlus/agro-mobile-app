@@ -16,4 +16,5 @@ npm install
 yarn install
 expo start
 ```
-Scannez le QR code avec l'application Expo Go (disponible sur iOS/Android).
+Scannez le QR code avec l'application Expo Go (disponible sur iOS/Android)
+
