@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import { router } from 'expo-router';
 import React from 'react';
 import { View, Text, StyleSheet, ImageBackground, Dimensions } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
+import { TouchableOpacity} from "react-native";
 import { Ionicons } from '@expo/vector-icons';
-import * as Animatable from 'react-native-animatable';
+// import * as Animatable from 'react-native-animatable';
 import Theme from '../constants/theme';
 
 const { width, height } = Dimensions.get('window');
@@ -45,37 +46,34 @@ export default function HomeScreen() {
         >
             {!loading && (
                 <View style={styles.titleContainer}>
-                    <Animatable.Text animation="fadeInDown" duration={800} style={styles.title}>
+                    <Text style={styles.title}>
                         🍅 SmartAgro
-                    </Animatable.Text>
-                    <Animatable.Text animation="fadeInUp" delay={500} duration={800} style={styles.slogan}>
+                    </Text>
+                    <Text  style={styles.slogan}>
                         L’IA qui protège vos plantations 🌿
-                    </Animatable.Text>
+                    </Text>
                 </View>
             )}
 
             <View style={styles.overlay}>
                 {loading ? (
                     <View style={styles.loaderContainer}>
-                        <Animatable.Text
-                            animation="pulse"
-                            iterationCount="infinite"
+                        <Text
+
                             style={styles.loadingText}
                         >
                             Chargement...
-                        </Animatable.Text>
+                        </Text>
                     </View>
                 ) : (
-                    <Animatable.View animation="fadeInUp" duration={800} style={styles.contentContainer}>
+                    <View  style={styles.contentContainer}>
                         <View style={styles.choicesContainer}>
                             <Text style={styles.choicesLabel}>Choisissez jusqu'a trois plantes</Text>
                             {plantOptions.map((plant, index) => {
                                 const selected = selectedPlants.includes(plant.name);
                                 return (
-                                    <Animatable.View
-                                        key={plant.name}
-                                        animation="fadeInUp"
-                                        delay={index * 100}
+                                    <View
+
                                     >
                                         <TouchableOpacity
                                             style={[styles.card, selected && styles.selectedCard]}
@@ -90,13 +88,13 @@ export default function HomeScreen() {
                                                 {plant.name}
                                             </Text>
                                         </TouchableOpacity>
-                                    </Animatable.View>
+                                    </View>
                                 );
                             })}
                         </View>
 
                         {selectedPlants.length > 0 && (
-                            <Animatable.View animation="fadeInUp" delay={200} style={styles.ctaContainer}>
+                            <View  style={styles.ctaContainer}>
                                 <TouchableOpacity
                                     style={styles.ctaButton}
                                     onPress={() => {
@@ -108,10 +106,10 @@ export default function HomeScreen() {
                                 >
                                     <Text style={styles.ctaText}>Démarrer le diagnostic</Text>
                                 </TouchableOpacity>
-                            </Animatable.View>
+                            </View>
                         )}
 
-                    </Animatable.View>
+                    </View>
                 )}
             </View>
         </ImageBackground>
