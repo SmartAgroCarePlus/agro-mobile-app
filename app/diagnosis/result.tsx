@@ -11,6 +11,7 @@ import ConfidenceIndicator from "@/components/ConfidenceIndicator";
 import { useDiagnosisStore } from "@/store/diagnosisStore";
 import { useAuthStore } from "@/store/authStore";
 import {useGlobalContext} from "@/lib/global-provider";
+import LoadingOverlay from "@/components/LoadingOverlay";
 
 
 export default function DiagnosisResultScreen() {
@@ -54,7 +55,7 @@ export default function DiagnosisResultScreen() {
     };
 
     const handleNewDiagnosis = () => {
-        router.replace("/diagnose");
+        router.replace("/diagnostic");
     };
 
     const getSeverityLevel = (confidence: number) => {
@@ -71,7 +72,10 @@ export default function DiagnosisResultScreen() {
 
     return (
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-            <View style={styles.imageContainer}>
+            <View className="flex flex-row items-center justify-between mt-5 px-5">
+                <Text className="text-xl font-poppins-bold">Resultat</Text>
+            </View>
+            <View style={styles.imageContainer} className="mt-5">
                 <Image
                     source={{ uri: diagnosis.imageUri }}
                     style={styles.image}
@@ -120,14 +124,14 @@ export default function DiagnosisResultScreen() {
 
                 <View style={styles.actions}>
                     <Button
-                        title="Share Results"
+                        title="Partager le diagnostique"
                         variant="outline"
                         onPress={handleShare}
                         icon={<Share2 size={18} color={Colors.primary} style={{ marginRight: 8 }} />}
                         style={styles.shareButton}
                     />
                     <Button
-                        title="New Diagnosis"
+                        title="Nouveau diagnostique"
                         onPress={handleNewDiagnosis}
                         style={styles.newButton}
                     />

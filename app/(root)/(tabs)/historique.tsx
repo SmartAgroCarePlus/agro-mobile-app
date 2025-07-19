@@ -8,6 +8,7 @@ import { useDiagnosisStore } from "@/store/diagnosisStore";
 import { useAuthStore } from "@/store/authStore";
 import { DiagnosisResult } from "@/types";
 import {useGlobalContext} from "@/lib/global-provider";
+import LoadingOverlay from "@/components/LoadingOverlay";
 
 export default function Historique() {
     const router = useRouter();
@@ -59,7 +60,7 @@ export default function Historique() {
     }
 
     return (
-        <SafeAreaView>
+        <SafeAreaView className="bg-white h-full">
 
         <View className="flex-1 bg-white">
             <FlatList
@@ -73,17 +74,21 @@ export default function Historique() {
                 )}
                 contentContainerStyle={{ paddingBottom: 32 }}
                 ListHeaderComponent={
-                    <View className="px-6 pt-6 pb-4">
-                        <Text className="text-2xl font-bold text-gray-900 mb-1">
+                    <View className="px-5">
+                        <View className="flex flex-row items-center justify-between mt-5">
+                            <Text className="text-xl font-poppins-bold">Historique</Text>
+                        </View>
+                        <Text className="text-2xl font-poppins-bold text-gray-900 mb-1 mt-5">
                             Historique des diagnostics
                         </Text>
-                        <Text className="text-base text-gray-500">
+                        <Text className="text-base text-gray-500 font-poppins">
                             Consultez vos analyses précédentes
                         </Text>
                     </View>
                 }
             />
         </View>
+
         </SafeAreaView>
     );
 }

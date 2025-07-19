@@ -5,14 +5,7 @@
 // import Colors from "@/constants/colors";
 // import {Leaf, History} from 'lucide-react-native';
 //
-// const TabIcon = ({ focused, icon, title } : {focused: boolean, icon: any, title: string}) => {
-//     return (
-//         <View className="flex-1 mt-3 flex flex-col items-center">
-//             <Image source={icon} tintColor={focused ? '#4CAF50' : '#666666'} resizeMode="contain" className="size-6"/>
-//             <Text className={`${focused ? 'text-primary font-poppins-medium' : 'text-textSecondary font-poppins'} text-xs w-full text-center mt-1`}>{title}</Text>
-//         </View>
-//     );
-// }
+
 //
 // const TabsLayout = () => {
 //     return (
@@ -78,9 +71,20 @@
 // }
 // export default TabsLayout
 
-import {View, Text} from 'react-native'
+import {View, Text, Image, TouchableOpacity} from 'react-native'
 import React from 'react'
 import {Tabs} from "expo-router";
+import icons from "@/constants/icons";
+import {Home, Leaf, User, History} from 'lucide-react-native';
+
+const TabIcon = ({ focused, icon, title } : {focused: boolean, icon: any, title: string}) => {
+    return (
+        <View className="flex-1 mt-3 flex flex-col items-center">
+            <Image source={icon} tintColor={focused ? '#4CAF50' : '#666666'} resizeMode="contain" className="size-6"/>
+            <Text className={`${focused ? 'text-primary font-poppins-medium' : 'text-textSecondary font-poppins'} text-xs w-full text-center mt-1`}>{title}</Text>
+        </View>
+    );
+}
 
 const TabsLayout = () => {
     console.log("📱 TabsLayout - Initialisation");
@@ -89,6 +93,7 @@ const TabsLayout = () => {
         <Tabs
             screenOptions={{
                 tabBarShowLabel: true,
+                tabBarActiveTintColor: '#4CAF50',
                 tabBarStyle: {
                     backgroundColor: 'white',
                     borderTopColor: '#4CAF50',
@@ -103,6 +108,7 @@ const TabsLayout = () => {
                 options={{
                     title: 'Accueil',
                     tabBarLabel: 'Accueil',
+                    tabBarIcon: ({ color }) => <Home size={22} color={color} />,
                 }}
             />
             <Tabs.Screen
@@ -110,6 +116,7 @@ const TabsLayout = () => {
                 options={{
                     title: 'Diagnostic',
                     tabBarLabel: 'Diagnostic',
+                    tabBarIcon: ({ color }) => <Leaf size={22} color={color} />,
                 }}
             />
             <Tabs.Screen
@@ -117,6 +124,7 @@ const TabsLayout = () => {
                 options={{
                     title: 'Historique',
                     tabBarLabel: 'Historique',
+                    tabBarIcon: ({ color }) => <History size={22} color={color} />,
                 }}
             />
             <Tabs.Screen
@@ -124,6 +132,7 @@ const TabsLayout = () => {
                 options={{
                     title: 'Profile',
                     tabBarLabel: 'Profile',
+                    tabBarIcon: ({ color }) => <User size={22} color={color} />,
                 }}
             />
         </Tabs>

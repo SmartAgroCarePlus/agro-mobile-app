@@ -65,7 +65,7 @@ const Profile = () => {
                 contentContainerClassName="pb-32 px-7"
             >
                 <View className="flex flex-row items-center justify-between mt-5">
-                    <Text className="text-xl font-rubik-bold">Profile</Text>
+                    <Text className="text-xl font-poppins-bold">Profile</Text>
                     <Image source={icons.bell} className="size-5" />
                 </View>
 
@@ -92,7 +92,7 @@ const Profile = () => {
                 <View className="flex flex-col border-t mt-5 pt-5 border-primary-200">
                     <SettingsItem
                         icon={icons.logout}
-                        title="Logout"
+                        title="Se déconnecter"
                         textStyle="text-danger"
                         showArrow={false}
                         onPress={handleLogout}

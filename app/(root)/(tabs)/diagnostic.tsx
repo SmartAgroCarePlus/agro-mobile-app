@@ -10,6 +10,7 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import { takePicture, pickImage } from "@/utils/imageUtils";
 import { useDiagnosisStore } from "@/store/diagnosisStore";
 import {useGlobalContext} from "@/lib/global-provider";
+import icons from "@/constants/icons";
 // import { useAuthStore } from "@/store/authStore";
 
 export default function Diagnostic() {
@@ -59,10 +60,13 @@ export default function Diagnostic() {
     return (
         <SafeAreaView className="bg-white h-full">
             <View className="px-5">
+                <View className="flex flex-row items-center justify-between mt-5">
+                    <Text className="text-xl font-poppins-bold">Diagnostic</Text>
+                </View>
                 <LoadingOverlay visible={isLoading} message="Analyse en cours..." />
 
-                <Text className="text-2xl font-poppins-bold text-black-dark mt-8">Diagnostiquer votre plante</Text>
-                <Text className="text-base text-muted mb-6 font-poppins mt-2">
+                <Text className="text-2xl font-poppins-bold text-black-dark mt-6 pt-6">Diagnostiquer votre plante</Text>
+                <Text className="text-base text-muted mb-6 font-poppins mt-4">
                     Prenez une photo claire de la partie affectée de votre plante pour un diagnostic précis.
                 </Text>
 
