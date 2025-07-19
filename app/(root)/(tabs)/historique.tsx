@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, FlatList } from "react-native";
+import { Text, View, FlatList, SafeAreaView } from "react-native";
 import { useRouter } from "expo-router";
 import { History as HistoryIcon } from "lucide-react-native";
 import DiagnosisCard from "@/components/DiagnosisCard";

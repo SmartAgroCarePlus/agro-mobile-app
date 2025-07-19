@@ -5,9 +5,10 @@ interface CardProps{
     children?: React.ReactNode;
     style?: StyleProp<ViewStyle>;
     variant?: 'default' | 'outlined' | 'elevated';
+    className?: string;
 }
 
-const Card = ({children, style, variant='default' }:CardProps) => {
+const Card = ({children, style, className, variant='default' }:CardProps) => {
     const getCardStyle = () => {
         switch (variant) {
             case 'outlined':
@@ -29,7 +30,7 @@ const Card = ({children, style, variant='default' }:CardProps) => {
         }
     }
     return (
-        <View className="bg-white rounded-lg p-4" style={getCardStyle()}>
+        <View className={`rounded-lg p-4 ${className}`} style={getCardStyle()}>
             {children}
         </View>
     )
