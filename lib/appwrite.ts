@@ -8,7 +8,6 @@ export const config = {
     projectId: process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID,
 }
 
-
 export const client = new Client();
 
 client
@@ -65,17 +64,29 @@ export async function getCurrentUser() {
     try {
         const result = await account.get();
         if (result.$id) {
-            const userAvatar = avatar.getInitials(result.name);
+            // Correction : Créer une URL valide pour l'avatar
+            let userAvatar = "";
+
+            try {
+                // Méthode 1: Utiliser getInitials avec une URL complète
+                userAvatar = `${config.endpoint}/avatars/initials?name=${encodeURIComponent(result.name)}&width=100&height=100`;
+            } catch (avatarError) {
+                // Méthode 2: Avatar par défaut si erreur
+                console.log("Erreur avatar:", avatarError);
+                userAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(result.name)}&size=100&background=4CAF50&color=fff`;
+            }
+
+            console.log("🖼️ Avatar URL généré:", userAvatar);
 
             return {
                 ...result,
-                avatar: userAvatar.toString(),
+                avatar: userAvatar,
             };
         }
 
         return null;
     } catch (error) {
-        console.log(error);
+        console.log("❌ Erreur getCurrentUser:", error);
         return null;
     }
 }

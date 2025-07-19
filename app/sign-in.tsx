@@ -6,22 +6,30 @@ import {useGlobalContext} from "@/lib/global-provider";
 
 import images from '@/constants/images'
 import icons from "@/constants/icons";
-import {router} from "expo-router";
-
-
+import {Redirect, router} from "expo-router";
 
 const SignIn = () => {
     const {refetch, loading, isLogged} = useGlobalContext();
 
-    if (!loading && isLogged) return router.push("/index")
+    if (!loading && isLogged) return <Redirect href="/" />; // Route plus spécifique
 
     const handleLogin = async () => {
-        const result = await login();
-        if (result){
-            console.log("Login success");
-            refetch();
-        } else {
-            Alert.alert('Erreur', 'Echec de la connexion');
+        try {
+            console.log("🔐 Début du processus de connexion");
+            const result = await login();
+
+            if (result) {
+                console.log("✅ Login réussi, mise à jour du contexte...");
+                await refetch();
+                console.log("✅ Contexte mis à jour, redirection en cours...");
+                // La redirection sera gérée automatiquement par le contexte global
+            } else {
+                console.log("❌ Échec du login");
+                Alert.alert('Erreur', 'Échec de la connexion');
+            }
+        } catch (error) {
+            console.error("❌ Erreur lors du handleLogin:", error);
+            Alert.alert('Erreur', 'Une erreur est survenue lors de la connexion');
         }
     };
 
@@ -44,7 +52,6 @@ const SignIn = () => {
                                    className="w-5 h-5" resizeMode="contain"/>
                             <Text className="text-lg font-poppins-medium ml-2 text-black-dark">Continuez avec Google</Text>
                         </View>
-
                     </TouchableOpacity>
                 </View>
             </ScrollView>

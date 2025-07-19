@@ -29,7 +29,7 @@ export default function Layout() {
     }
   return (
       <GlobalProvider>
-        <Tabs screenOptions={{ headerShown: false }} />
+        <Stack screenOptions={{ headerShown: false }} />
       </GlobalProvider>
   );
 }
